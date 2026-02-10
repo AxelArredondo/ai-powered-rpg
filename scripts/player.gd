@@ -7,8 +7,8 @@ var current_dir = "none"
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
 	
-func _physics_process(delta):
-	player_movement(delta)
+func _physics_process(_delta):
+	player_movement(_delta)
 	var movementUnit = 240
 	if Global.position == 0:
 		$Camera2D.position.y = 0
@@ -30,7 +30,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.position.x = -movementUnit
 		$CollisionShape2D.position.x = -movementUnit
 
-func player_movement(delta):
+func player_movement(_delta):
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
 		play_anim(1)
