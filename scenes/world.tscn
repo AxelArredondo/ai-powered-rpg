@@ -234,6 +234,7 @@ custom_minimum_size = Vector2(0, 70)
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 70.0
 grow_horizontal = 2
 
 [node name="Background" type="Panel" parent="UI/Banner" unique_id=860137646]
@@ -242,6 +243,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -40.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w7kh3")
@@ -251,14 +253,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VideoGameDesign" type="Label" parent="UI/Banner/Row" unique_id=1154047685]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.043137256, 0.12156863, 0.07450981, 1)
-theme_override_font_sizes/font_size = 40
-text = "AI Powered RPG"
+theme_override_font_sizes/font_size = 30
+text = " AI Powered RPG"
 
 [node name="spacer" type="Control" parent="UI/Banner/Row" unique_id=81417014]
 layout_mode = 2
