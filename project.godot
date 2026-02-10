@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="AIPoweredRPG"
+run/main_scene="uid://b705dvxrhsp58"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://dl6s1bkbwnb53"
+
+[display]
+
+window/stretch/scale=4.0
 
 [physics]
 
@@ -20,4 +29,5 @@ config/icon="res://icon.svg"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
