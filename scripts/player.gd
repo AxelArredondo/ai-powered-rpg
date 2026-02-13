@@ -86,3 +86,12 @@ func play_anim(movement):
 			anim.play("back_walk")
 		elif movement == 0:
 			anim.play("back_idle")
+
+
+func _on_area_2d_body_entered(body):
+	if body.name == "Player":
+		get_tree().get_first_node_in_group("dialogue_ui").set_player_near(true)
+
+func _on_area_2d_body_exited(body):
+	if body.name == "Player":
+		get_tree().get_first_node_in_group("dialogue_ui").set_player_near(false)

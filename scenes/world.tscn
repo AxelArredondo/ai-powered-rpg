@@ -1,14 +1,17 @@
-[gd_scene format=3 uid="uid://b705dvxrhsp58"]
+[gd_scene load_steps=24 format=3 uid="uid://b705dvxrhsp58"]
 
 [ext_resource type="Texture2D" uid="uid://bqktbdi753lg5" path="res://assets/tilesets/plains.png" id="1_bnbq6"]
 [ext_resource type="Texture2D" uid="uid://dn34umkgvc6tx" path="res://assets/tilesets/grass.png" id="2_yo6hy"]
 [ext_resource type="Texture2D" uid="uid://cyk7t1nhvprl1" path="res://assets/objects/objects.png" id="3_h7fmu"]
-[ext_resource type="PackedScene" uid="uid://ynfsy34x7dey" path="res://scenes/player.tscn" id="4_g0t5b"]
+[ext_resource type="PackedScene" uid="uid://ynfsy34x7dey" path="res://assets/tilesets/player.tscn" id="4_g0t5b"]
+[ext_resource type="PackedScene" uid="uid://crqr37mpjqn7l" path="res://scenes/slime.tscn" id="5_w7kh3"]
+[ext_resource type="Script" uid="uid://berq22hpai0nu" path="res://scenes/slime.gd" id="6_e3hyu"]
 [ext_resource type="Script" uid="uid://c5cphbgestrhu" path="res://scripts/area_north.gd" id="6_m28dn"]
 [ext_resource type="Script" uid="uid://i03p7d111ffw" path="res://scripts/area_south.gd" id="7_y42y7"]
 [ext_resource type="Script" uid="uid://c675p32tu3j7l" path="res://scripts/area_east.gd" id="8_2ryl6"]
 [ext_resource type="Texture2D" uid="uid://dtndatlrblisy" path="res://assets/pictures/public_landing_page_qr.png" id="9_7r4gi"]
 [ext_resource type="Script" uid="uid://bah8wi6o38v5e" path="res://scripts/area_west.gd" id="9_aqrvi"]
+[ext_resource type="PackedScene" uid="uid://c8p0gs781n0fy" path="res://scenes/textbox.tscn" id="12_q5onr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b16c8"]
 texture = ExtResource("1_bnbq6")
@@ -167,9 +170,9 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Node2D" type="Node2D" unique_id=483441989]
+[node name="Node2D" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="." unique_id=664830306]
+[node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_fsvww")
 format = 2
 layer_0/name = "ground"
@@ -184,52 +187,61 @@ layer_3/tile_data = PackedInt32Array(65540, 2, 5, 131076, 2, 6, 196612, 2, 7, 26
 layer_4/name = "Background"
 layer_4/tile_data = PackedInt32Array(655371, 2, 1, 524292, 2, 1, 327686, 2, 1, 262160, 2, 1, 393227, 720898, 0, 393226, 655362, 0, 458768, 327682, 0, 458771, 327682, 0, 786446, 2, 0, 262158, 2, 0, 524295, 2, 0)
 
-[node name="Player" parent="." unique_id=104636817 instance=ExtResource("4_g0t5b")]
+[node name="Player" parent="." instance=ExtResource("4_g0t5b")]
 position = Vector2(228, 135)
 
-[node name="AreaNorth" type="Area2D" parent="." unique_id=1392486787]
+[node name="Slime2" parent="." instance=ExtResource("5_w7kh3")]
+position = Vector2(265, 144)
+script = ExtResource("6_e3hyu")
+
+[node name="AreaNorth" type="Area2D" parent="."]
 position = Vector2(242, -0.5)
+monitoring = false
 script = ExtResource("6_m28dn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaNorth" unique_id=988075214]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaNorth"]
 position = Vector2(-2, -5.5)
 shape = SubResource("RectangleShape2D_mric4")
 
-[node name="AreaSouth" type="Area2D" parent="." unique_id=1352117858]
+[node name="AreaSouth" type="Area2D" parent="."]
 position = Vector2(245.601, -201.075)
+monitoring = false
 script = ExtResource("7_y42y7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSouth" unique_id=1206750180]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSouth"]
 position = Vector2(1.89885, 2.07507)
 shape = SubResource("RectangleShape2D_bso8t")
 
-[node name="AreaSouth2" type="Area2D" parent="." unique_id=965170522]
+[node name="AreaSouth2" type="Area2D" parent="."]
 position = Vector2(216, 310)
+monitoring = false
 script = ExtResource("7_y42y7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSouth2" unique_id=2071051519]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSouth2"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_bso8t")
 
-[node name="AreaEast" type="Area2D" parent="." unique_id=941152024]
+[node name="AreaEast" type="Area2D" parent="."]
 position = Vector2(636.099, 139.972)
+monitoring = false
 script = ExtResource("8_2ryl6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaEast" unique_id=1970583104]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaEast"]
 position = Vector2(1.90112, 4.52101)
 shape = SubResource("RectangleShape2D_njfxg")
 
-[node name="AreaWest" type="Area2D" parent="." unique_id=303351297]
+[node name="AreaWest" type="Area2D" parent="."]
 position = Vector2(819.625, 144.176)
+monitoring = false
 script = ExtResource("9_aqrvi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaWest" unique_id=1627732129]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaWest"]
 position = Vector2(-3.62451, 4.82352)
 shape = SubResource("RectangleShape2D_7e8r5")
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=299639921]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Banner" type="Control" parent="UI" unique_id=1084162728]
+[node name="Banner" type="Control" parent="UI"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 3
 anchors_preset = 10
@@ -237,7 +249,7 @@ anchor_right = 1.0
 offset_bottom = 70.0
 grow_horizontal = 2
 
-[node name="Background" type="Panel" parent="UI/Banner" unique_id=860137646]
+[node name="Background" type="Panel" parent="UI/Banner"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -248,7 +260,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w7kh3")
 
-[node name="Row" type="HBoxContainer" parent="UI/Banner" unique_id=1837339860]
+[node name="Row" type="HBoxContainer" parent="UI/Banner"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -257,20 +269,22 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VideoGameDesign" type="Label" parent="UI/Banner/Row" unique_id=1154047685]
+[node name="VideoGameDesign" type="Label" parent="UI/Banner/Row"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.043137256, 0.12156863, 0.07450981, 1)
 theme_override_font_sizes/font_size = 30
 text = " AI Powered RPG"
 
-[node name="spacer" type="Control" parent="UI/Banner/Row" unique_id=81417014]
+[node name="spacer" type="Control" parent="UI/Banner/Row"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="UI/Banner/Row" unique_id=1618408890]
+[node name="TextureRect" type="TextureRect" parent="UI/Banner/Row"]
 layout_mode = 2
 texture = ExtResource("9_7r4gi")
 expand_mode = 3
+
+[node name="Textbox" parent="." instance=ExtResource("12_q5onr")]
 
 [connection signal="body_entered" from="AreaNorth" to="AreaNorth" method="_on_body_entered"]
 [connection signal="body_exited" from="AreaNorth" to="AreaNorth" method="_on_body_exited"]
