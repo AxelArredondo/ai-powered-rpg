@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="AIPoweredRPG"
 run/main_scene="uid://b705dvxrhsp58"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -21,7 +25,9 @@ Global="*uid://dl6s1bkbwnb53"
 
 [display]
 
-window/stretch/scale=4.0
+window/size/viewport_width=400
+window/size/viewport_height=240
+window/stretch/mode="canvas_items"
 
 [input]
 
