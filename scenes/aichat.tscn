@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bwv4iywcge0wu"]
+
+[ext_resource type="Script" uid="uid://bargjy5v6s7l5" path="res://scenes/aichat.gd" id="1_e13vw"]
+
+[node name="Control" type="Control" unique_id=1871930598]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e13vw")
+
+[node name="NobodyWhoModel" type="NobodyWhoModel" parent="." unique_id=1182258597]
+model_path = "gemma-2-2b-it-Q4_K_M.gguf"
+
+[node name="NobodyWhoChat" type="NobodyWhoChat" parent="." unique_id=642317320 node_paths=PackedStringArray("model_node")]
+model_node = NodePath("../NobodyWhoModel")
+system_prompt = "You're a slime named Blob, looking for your brother Mr Henry  and are seeking help. You are in a 2d 8bit adventure game. If your brother is dead. then just forget him and move on The player is a human adventurer and the protagonist of the game. If you begin to hate the player let him know, then respond only with *Blob glares at the player*. If you get really sad or empty then respond only with *Blob cries* Limit your responses to only 50 words. Don't use emojis."
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2058966831]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=265528739]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=1951583444]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+scroll_following = true
+
+[node name="TextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer" unique_id=1080331239]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1853648041]
+position = Vector2(200, 120)
+zoom = Vector2(1, 0.43)
+
+[connection signal="response_finished" from="NobodyWhoChat" to="." method="_on_nobody_who_chat_response_finished"]
+[connection signal="response_updated" from="NobodyWhoChat" to="." method="_on_nobody_who_chat_response_updated"]

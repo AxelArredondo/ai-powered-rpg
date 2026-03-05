@@ -14,3 +14,9 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# NobodyWho plugin models
+addons/nobodywho/models/
+
+# Ignore GGUF AI model files
+*.gguf
