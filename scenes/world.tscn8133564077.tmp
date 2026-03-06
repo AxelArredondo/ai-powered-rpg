@@ -288,8 +288,7 @@ visible = false
 
 [node name="Npc" parent="." unique_id=1315252259 instance=ExtResource("12_jhx03")]
 position = Vector2(210, 237)
-move_speed = 0.0
-loop_path = true
+loop_path = false
 
 [connection signal="body_entered" from="AreaNorth" to="AreaNorth" method="_on_body_entered"]
 [connection signal="body_exited" from="AreaNorth" to="AreaNorth" method="_on_body_exited"]
