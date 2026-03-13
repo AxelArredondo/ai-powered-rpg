@@ -429,4 +429,4 @@ animation = &"front_idle"
 frame = 4
 frame_progress = 0.304374
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1517873892]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=877228232]

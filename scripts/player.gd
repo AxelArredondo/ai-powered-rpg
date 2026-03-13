@@ -1,15 +1,23 @@
 extends CharacterBody2D
 
-
 const speed = 100
 var current_dir = "none"
+var can_move := true
 
-func _ready():
+func _ready() -> void:
+	add_to_group("player")
 	$AnimatedSprite2D.play("front_idle")
-	
-func _physics_process(_delta):
-	player_movement(_delta)
+
+func _physics_process(_delta: float) -> void:
+	if can_move:
+		player_movement(_delta)
+	else:
+		velocity = Vector2.ZERO
+		play_anim(0)
+		move_and_slide()
+
 	var movementUnit = 240
+
 	if Global.position == 0:
 		$Camera2D.position.y = 0
 		$AnimatedSprite2D.position.y = 0
@@ -17,81 +25,88 @@ func _physics_process(_delta):
 		$Camera2D.position.x = 0
 		$AnimatedSprite2D.position.x = 0
 		$CollisionShape2D.position.x = 0
+
 	elif Global.position == 1:
 		$Camera2D.position.y = -movementUnit
 		$AnimatedSprite2D.position.y = -movementUnit
 		$CollisionShape2D.position.y = -movementUnit + 9
+
 	elif Global.position == 2:
 		$Camera2D.position.x = movementUnit
 		$AnimatedSprite2D.position.x = movementUnit
 		$CollisionShape2D.position.x = movementUnit
+
 	elif Global.position == 3:
 		$Camera2D.position.x = -movementUnit
 		$AnimatedSprite2D.position.x = -movementUnit
 		$CollisionShape2D.position.x = -movementUnit
 
-func player_movement(_delta):
+func set_can_move(value: bool) -> void:
+	can_move = value
+	if not can_move:
+		velocity = Vector2.ZERO
+		play_anim(0)
+
+func player_movement(_delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
 		play_anim(1)
 		velocity.x = speed
 		velocity.y = 0
+
 	elif Input.is_action_pressed("ui_left"):
 		current_dir = "left"
 		play_anim(1)
 		velocity.x = -speed
 		velocity.y = 0
+
 	elif Input.is_action_pressed("ui_down"):
 		current_dir = "down"
 		play_anim(1)
 		velocity.x = 0
 		velocity.y = speed
+
 	elif Input.is_action_pressed("ui_up"):
 		current_dir = "up"
 		play_anim(1)
 		velocity.x = 0
 		velocity.y = -speed
+
 	else:
 		play_anim(0)
 		velocity.x = 0
 		velocity.y = 0
-	
+
 	move_and_slide()
-		
-func play_anim(movement):
+
+func play_anim(movement: int) -> void:
 	var dir = current_dir
 	var anim = $AnimatedSprite2D
-	
+
 	if dir == "right":
 		anim.flip_h = false
 		if movement == 1:
 			anim.play("side_walk")
 		elif movement == 0:
 			anim.play("side_idle")
+
 	elif dir == "left":
 		anim.flip_h = true
 		if movement == 1:
 			anim.play("side_walk")
 		elif movement == 0:
 			anim.play("side_idle")
+
 	if dir == "down":
 		anim.flip_h = true
 		if movement == 1:
 			anim.play("front_walk")
 		elif movement == 0:
 			anim.play("front_idle")
+
 	if dir == "up":
 		anim.flip_h = true
 		if movement == 1:
 			anim.play("back_walk")
 		elif movement == 0:
 			anim.play("back_idle")
-
-
-func _on_area_2d_body_entered(body):
-	if body.name == "Player":
-		get_tree().get_first_node_in_group("dialogue_ui").set_player_near(true)
-
-func _on_area_2d_body_exited(body):
-	if body.name == "Player":
-		get_tree().get_first_node_in_group("dialogue_ui").set_player_near(false)
