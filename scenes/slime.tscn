@@ -1,6 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://crqr37mpjqn7l"]
+[gd_scene format=3 uid="uid://crqr37mpjqn7l"]
 
 [ext_resource type="Texture2D" uid="uid://xjtku7a3hwxw" path="res://assets/sprites/monsters/slime.png" id="1_371uh"]
+[ext_resource type="Script" uid="uid://co3dtnp1hpr85" path="res://scenes/slime.gd" id="1_p2gj0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2gj0"]
 size = Vector2(13.486656, 9)
@@ -248,13 +249,24 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Slime" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6pvg"]
+size = Vector2(34, 32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Slime" type="CharacterBody2D" unique_id=341324291]
+script = ExtResource("1_p2gj0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1195356341]
 position = Vector2(0.19793701, 2.5)
 shape = SubResource("RectangleShape2D_p2gj0")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1789827162]
 sprite_frames = SubResource("SpriteFrames_3tc40")
-animation = &"idle-front"
-frame_progress = 0.9890017
+animation = &"walking-front"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1568006831]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1784779736]
+shape = SubResource("RectangleShape2D_n6pvg")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
