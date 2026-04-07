@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b23nd60gvk3s7"
-path="res://.godot/imported/objects.png-fa1ceb89840fd9345bc36f64b4f4a353.ctex"
+uid="uid://cnrlythwkpakn"
+path="res://.godot/imported/rock_in_water_04.png-034c4670196addb2dca12ac136e75953.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/objects.png"
-dest_files=["res://.godot/imported/objects.png-fa1ceb89840fd9345bc36f64b4f4a353.ctex"]
+source_file="res://assets/objects/rock_in_water_04.png"
+dest_files=["res://.godot/imported/rock_in_water_04.png-034c4670196addb2dca12ac136e75953.ctex"]
 
 [params]
 
