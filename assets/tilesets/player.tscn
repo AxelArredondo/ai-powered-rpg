@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://ynfsy34x7dey"]
+[gd_scene format=3 uid="uid://ynfsy34x7dey"]
 
 [ext_resource type="Script" uid="uid://bpb33quppihx2" path="res://scripts/player.gd" id="1_pgndf"]
 [ext_resource type="Texture2D" uid="uid://dlr16p64e6tdt" path="res://assets/sprites/characters/player.png" id="2_twia1"]
@@ -419,28 +419,25 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysgyj"]
 size = Vector2(26, 27)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1001594420]
 script = ExtResource("1_pgndf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=676250516]
 position = Vector2(-0.147, 9)
 shape = SubResource("RectangleShape2D_bsseh")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=114657773]
 sprite_frames = SubResource("SpriteFrames_ju5sr")
-animation = &"front_idle"
-frame = 4
-frame_progress = 0.304374
+animation = &"front_walk"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1892226624]
 position = Vector2(0.5979767, 8.1861515)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=725052085]
 position = Vector2(-0.5979767, 0.3138485)
 shape = SubResource("RectangleShape2D_ysgyj")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
+[node name="Camera2D" type="Camera2D" parent="." unique_id=343589467]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
