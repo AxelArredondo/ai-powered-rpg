@@ -1229,6 +1229,6 @@ position = Vector2(212, 609)
 position = Vector2(249, -457)
 
 [node name="Skeleton" parent="." unique_id=1558578720 instance=ExtResource("40_e75v4")]
-position = Vector2(494, 131)
+position = Vector2(1739.207, -874.803)
 
 [editable path="Npc"]

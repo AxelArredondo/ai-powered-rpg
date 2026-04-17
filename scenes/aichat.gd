@@ -12,6 +12,23 @@ var _system_prompts: Dictionary = {}
 var _first_turn_injected: Dictionary = {}
 var _worker_started: Dictionary = {}
 
+# Maps NobodyWhoChat node name → npc_id used by NpcDialogue / GameState.
+const NPC_ID_MAP := {
+	"Farmer2":  "farmer2",
+	"Princess2": "princess2",
+	"Villager": "villager",
+	"Skeleton": "skeleton",
+}
+
+# Maps node name → the met_X flag written on first contact.
+const MET_FLAG_MAP := {
+	"Blob":      "met_blob",
+	"Farmer2":   "met_farmer2",
+	"Princess2": "met_princess2",
+	"Villager":  "met_villager",
+	"Skeleton":  "met_skeleton",
+}
+
 func _ready() -> void:
 	hide()
 	# Gemma has no system role in its chat template — NobodyWho would just
@@ -20,9 +37,13 @@ func _ready() -> void:
 	# to the first user message sent to that node.
 	for child in get_children():
 		if child.get_class() == "NobodyWhoChat":
-			var prompt: String = child.system_prompt
+			var prompt: String
 			if child.name == "Blob":
 				prompt = BlobDialogue.BLOB_SYSTEM_PROMPT
+			elif NPC_ID_MAP.has(child.name):
+				prompt = NpcDialogue.get_system_prompt(NPC_ID_MAP[child.name])
+			else:
+				prompt = child.system_prompt
 			_system_prompts[child.name] = prompt
 			_first_turn_injected[child.name] = false
 			child.system_prompt = ""
@@ -58,9 +79,10 @@ func open_chat() -> void:
 	text_edit.editable = true
 	text_edit.grab_focus()
 	set_player_movement_enabled(false)
-	# Record first contact with Blob
-	if _active_chat_name == "Blob" and not GameState.has_flag("met_blob"):
-		GameState.player["flags"].append("met_blob")
+
+	var met_flag: String = MET_FLAG_MAP.get(_active_chat_name, "")
+	if met_flag != "" and not GameState.has_flag(met_flag):
+		GameState.player["flags"].append(met_flag)
 		GameState.save_state()
 
 func close_chat() -> void:
@@ -82,19 +104,23 @@ func send_text_to_ai() -> void:
 
 	waiting_for_response = true
 	text_edit.editable = false
-	ai_text.text = ""
+	ai_text.text = "..."
 
 	if active_chat != null:
+		GameState.player["recent_action"] = message
 		var payload := message
+
 		if _active_chat_name == "Blob":
-			GameState.player["recent_action"] = message
 			payload = BlobDialogue.build_message(message)
-			ai_text.text = "..."
+		elif NPC_ID_MAP.has(_active_chat_name):
+			payload = NpcDialogue.build_message(NPC_ID_MAP[_active_chat_name], message)
+
 		if not _first_turn_injected.get(_active_chat_name, true):
 			var sys: String = _system_prompts.get(_active_chat_name, "")
 			if sys != "":
 				payload = sys + "\n\n" + payload
 			_first_turn_injected[_active_chat_name] = true
+
 		active_chat.ask(payload)
 
 # ---------------------------------------------------------------------------
@@ -120,11 +146,9 @@ func _input(event: InputEvent) -> void:
 # NobodyWho signals
 # ---------------------------------------------------------------------------
 
-# Blob produces raw JSON while streaming — suppress it from the UI.
-# Other NPCs stream naturally.
-func _on_nobody_who_chat_response_updated(new_token: String) -> void:
-	if _active_chat_name != "Blob":
-		ai_text.text += new_token
+# All NPCs return JSON — suppress streaming tokens and show "..." until done.
+func _on_nobody_who_chat_response_updated(_new_token: String) -> void:
+	pass
 
 func _on_nobody_who_chat_response_finished(response: String) -> void:
 	waiting_for_response = false
@@ -133,9 +157,29 @@ func _on_nobody_who_chat_response_finished(response: String) -> void:
 	text_edit.grab_focus()
 
 	if _active_chat_name == "Blob":
-		# Parse JSON, validate, apply state changes, show only spoken_response
 		ai_text.text = BlobDialogue.validate_and_apply(response)
-	# For other NPCs the text is already displayed via streaming
+	elif NPC_ID_MAP.has(_active_chat_name):
+		ai_text.text = NpcDialogue.validate_and_apply(NPC_ID_MAP[_active_chat_name], response)
+	else:
+		ai_text.text = response.strip_edges()
+	_debug_print_state()
+
+func _debug_print_state() -> void:
+	var gs := GameState
+	var npc: Dictionary
+	if _active_chat_name == "Blob":
+		npc = gs.blob
+	elif NPC_ID_MAP.has(_active_chat_name):
+		npc = gs.get(NPC_ID_MAP[_active_chat_name])
+	else:
+		return
+	print("[DEBUG %s] rel=%.2f  trust=%.2f  quest=%s  flags=%s" % [
+		_active_chat_name,
+		npc.get("relationship", 0.0),
+		npc.get("trust", 0.0),
+		npc.get("quest_involvement", "none"),
+		str(gs.player.get("flags", [])),
+	])
 
 # ---------------------------------------------------------------------------
 # Player movement lock

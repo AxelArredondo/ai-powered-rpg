@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 Global="*uid://dl6s1bkbwnb53"
 GameState="*res://scripts/game_state.gd"
 BlobDialogue="*res://scripts/blob_dialogue.gd"
+NpcDialogue="*res://scripts/npc_dialogue.gd"
 PauseMenu="*res://scenes/pause_menu.tscn"
 
 [display]
