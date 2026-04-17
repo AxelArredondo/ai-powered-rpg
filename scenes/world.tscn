@@ -34,6 +34,9 @@
 [ext_resource type="Texture2D" uid="uid://cxu2vpmcgt3je" path="res://assets/tilesets/walls.png" id="27_mvg0v"]
 [ext_resource type="Texture2D" uid="uid://b3p7atng4ty3d" path="res://assets/tilesets/water1.png" id="28_h3odw"]
 [ext_resource type="Texture2D" uid="uid://cg5tadebh24r4" path="res://assets/tilesets/water2.png" id="29_5hl1e"]
+[ext_resource type="Script" uid="uid://bah8wi6o38v5e" path="res://scripts/area_west.gd" id="9_aqrvi"]
+[ext_resource type="PackedScene" uid="uid://cjrtsvmesxsa4" path="res://scenes/NPC.tscn" id="12_jhx03"]
+[ext_resource type="PackedScene" uid="uid://c8p0gs781n0fy" path="res://scenes/textbox.tscn" id="12_q5onr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b16c8"]
 texture = ExtResource("1_bnbq6")
@@ -1207,3 +1210,23 @@ offset_left = 200.24902
 offset_top = 120.93471
 offset_right = 200.24902
 offset_bottom = 120.93471
+[node name="Textbox" parent="." unique_id=2024913025 instance=ExtResource("12_q5onr")]
+visible = false
+
+[node name="Npc" parent="." unique_id=1315252259 instance=ExtResource("12_jhx03")]
+position = Vector2(210, 237)
+move_speed = 0.0
+loop_path = true
+
+[connection signal="body_entered" from="AreaNorth" to="AreaNorth" method="_on_body_entered"]
+[connection signal="body_exited" from="AreaNorth" to="AreaNorth" method="_on_body_exited"]
+[connection signal="body_entered" from="AreaSouth" to="AreaSouth" method="_on_body_entered"]
+[connection signal="body_exited" from="AreaSouth" to="AreaSouth" method="_on_body_exited"]
+[connection signal="body_entered" from="AreaSouth2" to="AreaSouth2" method="_on_body_entered"]
+[connection signal="body_exited" from="AreaSouth2" to="AreaSouth2" method="_on_body_exited"]
+[connection signal="body_entered" from="AreaEast" to="AreaEast" method="_on_body_entered"]
+[connection signal="body_exited" from="AreaEast" to="AreaEast" method="_on_body_exited"]
+[connection signal="body_entered" from="AreaWest" to="AreaWest" method="_on_body_entered"]
+[connection signal="body_exited" from="AreaWest" to="AreaWest" method="_on_body_exited"]
+
+[editable path="Npc"]
