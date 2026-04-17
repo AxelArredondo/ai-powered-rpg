@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="AIPoweredRPG"
-run/main_scene="uid://b705dvxrhsp58"
+run/main_scene="uid://bfubh8prq833x"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -25,6 +25,7 @@ Global="*uid://dl6s1bkbwnb53"
 GameState="*res://scripts/game_state.gd"
 BlobDialogue="*res://scripts/blob_dialogue.gd"
 NpcDialogue="*res://scripts/npc_dialogue.gd"
+PauseMenu="*res://scenes/pause_menu.tscn"
 
 [display]
 
