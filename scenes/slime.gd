@@ -38,8 +38,12 @@ func _ready() -> void:
 
 func _connect_to_blob() -> void:
 	var blob = get_node_or_null("../Player/AIChat/Blob")
-	if blob and blob.has_signal("response_finished"):
-		blob.response_finished.connect(_on_first_conversation, CONNECT_ONE_SHOT)
+	if blob == null:
+		push_warning("Slime: Blob node not found at ../Player/AIChat/Blob")
+		return
+	var err: Error = blob.response_finished.connect(_on_first_conversation, CONNECT_ONE_SHOT)
+	if err != OK:
+		push_warning("Slime: Failed to connect to blob.response_finished (error %d)" % err)
 
 func _on_first_conversation(_response: String) -> void:
 	is_companion = true

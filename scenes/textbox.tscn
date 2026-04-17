@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c8p0gs781n0fy"]
 
-[ext_resource type="Script" uid="uid://dwmbi58ngmy36" path="res://textbox.gd" id="1_nyk3b"]
+[ext_resource type="Script" path="res://textbox.gd" id="1_nyk3b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsew3"]
 bg_color = Color(0, 0, 0, 1)
@@ -12,10 +12,10 @@ border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nsew3"]
 
-[node name="Textbox" type="CanvasLayer"]
+[node name="Textbox" type="CanvasLayer" unique_id=2051877742]
 script = ExtResource("1_nyk3b")
 
-[node name="TextboxContainer" type="MarginContainer" parent="."]
+[node name="TextboxContainer" type="MarginContainer" parent="." unique_id=345697242]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -28,31 +28,31 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 8
 
-[node name="Panel" type="Panel" parent="TextboxContainer"]
+[node name="Panel" type="Panel" parent="TextboxContainer" unique_id=1048627591]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nsew3")
 
-[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer" unique_id=551364571]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer"]
+[node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer" unique_id=1199001150]
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer" unique_id=675138854]
 layout_mode = 2
 
-[node name="Start" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+[node name="Start" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer" unique_id=93454098]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 20
 text = "*"
 
-[node name="Label" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer" unique_id=1006478808]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -62,7 +62,7 @@ Nice to meet you!"
 label_settings = SubResource("LabelSettings_nsew3")
 autowrap_mode = 3
 
-[node name="End" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+[node name="End" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer" unique_id=1956494209]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 20

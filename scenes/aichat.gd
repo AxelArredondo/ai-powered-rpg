@@ -8,14 +8,24 @@ var chat_open := false
 var waiting_for_response := false
 var active_chat: Node = null
 var _active_chat_name := ""
+var _system_prompts: Dictionary = {}
+var _first_turn_injected: Dictionary = {}
+var _worker_started: Dictionary = {}
 
 func _ready() -> void:
 	hide()
-	# Push the static Blob system prompt onto the NobodyWhoChat node before
-	# any say() calls so the scene-file placeholder prompt is replaced.
-	var blob_node := get_node_or_null("Blob")
-	if blob_node != null:
-		blob_node.system_prompt = BlobDialogue.BLOB_SYSTEM_PROMPT
+	# Gemma has no system role in its chat template — NobodyWho would just
+	# concatenate system_prompt into the first user turn, confusing the model.
+	# We capture each node's system_prompt, clear it, then prepend it manually
+	# to the first user message sent to that node.
+	for child in get_children():
+		if child.get_class() == "NobodyWhoChat":
+			var prompt: String = child.system_prompt
+			if child.name == "Blob":
+				prompt = BlobDialogue.BLOB_SYSTEM_PROMPT
+			_system_prompts[child.name] = prompt
+			_first_turn_injected[child.name] = false
+			child.system_prompt = ""
 	set_active_chat("Blob")
 
 # ---------------------------------------------------------------------------
@@ -31,6 +41,9 @@ func set_active_chat(node_name: String) -> void:
 	active_chat = get_node_or_null(node_name)
 	_active_chat_name = node_name
 	if active_chat != null:
+		if not _worker_started.get(node_name, false):
+			active_chat.start_worker()
+			_worker_started[node_name] = true
 		active_chat.response_updated.connect(_on_nobody_who_chat_response_updated)
 		active_chat.response_finished.connect(_on_nobody_who_chat_response_finished)
 
@@ -77,7 +90,12 @@ func send_text_to_ai() -> void:
 			GameState.player["recent_action"] = message
 			payload = BlobDialogue.build_message(message)
 			ai_text.text = "..."
-		active_chat.say(payload)
+		if not _first_turn_injected.get(_active_chat_name, true):
+			var sys: String = _system_prompts.get(_active_chat_name, "")
+			if sys != "":
+				payload = sys + "\n\n" + payload
+			_first_turn_injected[_active_chat_name] = true
+		active_chat.ask(payload)
 
 # ---------------------------------------------------------------------------
 # Input

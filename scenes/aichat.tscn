@@ -13,6 +13,7 @@ script = ExtResource("1_e13vw")
 
 [node name="NobodyWhoModel" type="NobodyWhoModel" parent="." unique_id=1813921499]
 model_path = "gemma-2-2b-it-Q4_K_M.gguf"
+use_gpu_if_available = false
 
 [node name="Blob" type="NobodyWhoChat" parent="." unique_id=2114915313 node_paths=PackedStringArray("model_node")]
 model_node = NodePath("../NobodyWhoModel")
