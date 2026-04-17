@@ -2,14 +2,26 @@ extends Control
 
 @onready var ai_text: RichTextLabel = $PanelContainer/VBoxContainer/RichTextLabel
 @onready var text_edit: TextEdit = $PanelContainer/VBoxContainer/TextEdit
-@onready var blob = $Blob
 
 var player_near := false
 var chat_open := false
 var waiting_for_response := false
+var active_chat: Node = null
 
 func _ready() -> void:
 	hide()
+	set_active_chat("Blob")
+
+func set_active_chat(node_name: String) -> void:
+	if active_chat != null:
+		if active_chat.response_updated.is_connected(_on_nobody_who_chat_response_updated):
+			active_chat.response_updated.disconnect(_on_nobody_who_chat_response_updated)
+		if active_chat.response_finished.is_connected(_on_nobody_who_chat_response_finished):
+			active_chat.response_finished.disconnect(_on_nobody_who_chat_response_finished)
+	active_chat = get_node_or_null(node_name)
+	if active_chat != null:
+		active_chat.response_updated.connect(_on_nobody_who_chat_response_updated)
+		active_chat.response_finished.connect(_on_nobody_who_chat_response_finished)
 
 func set_player_near(value: bool) -> void:
 	player_near = value
@@ -39,7 +51,8 @@ func send_text_to_ai() -> void:
 	waiting_for_response = true
 	text_edit.editable = false
 	ai_text.text = ""
-	blob.say(message)
+	if active_chat != null:
+		active_chat.say(message)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

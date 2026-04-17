@@ -1,7 +1,6 @@
-[gd_scene format=3 uid="uid://cjrtsvmesxsa4"]
+[gd_scene format=3 uid="uid://def6joe83nhef"]
 
-[ext_resource type="Script" uid="uid://us50nyvl2khj" path="res://scripts/npc.gd" id="1_6xvi5"]
-[ext_resource type="Texture2D" uid="uid://ldeybnlflpbr" path="res://icon.svg" id="2_ktgr7"]
+[ext_resource type="Script" path="res://scripts/npc.gd" id="1_6xvi5"]
 
 [sub_resource type="Curve2D" id="Curve2D_jnjht"]
 _data = {
@@ -12,9 +11,9 @@ point_count = 5
 [node name="Npc" type="CharacterBody2D" unique_id=1315252259]
 script = ExtResource("1_6xvi5")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=500303739]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ktgr7")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1067220244]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=199079483]
 
 [node name="Path2D" type="Path2D" parent="." unique_id=954725844]
 curve = SubResource("Curve2D_jnjht")

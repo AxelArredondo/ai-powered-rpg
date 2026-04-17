@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bwv4iywcge0wu"]
+[gd_scene format=3 uid="uid://0mew0s560i71"]
 
 [ext_resource type="Script" uid="uid://bargjy5v6s7l5" path="res://scenes/aichat.gd" id="1_e13vw"]
 
@@ -11,20 +11,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e13vw")
 
-[node name="NobodyWhoModel" type="NobodyWhoModel" parent="." unique_id=1182258597]
+[node name="NobodyWhoModel" type="NobodyWhoModel" parent="." unique_id=1813921499]
 model_path = "gemma-2-2b-it-Q4_K_M.gguf"
 
-[node name="Blob" type="NobodyWhoChat" parent="." unique_id=642317320 node_paths=PackedStringArray("model_node")]
+[node name="Blob" type="NobodyWhoChat" parent="." unique_id=2114915313 node_paths=PackedStringArray("model_node")]
 model_node = NodePath("../NobodyWhoModel")
 system_prompt = "You're a slime named Blob, looking for your brother Mr Henry  and are seeking help. You are in a 2d 8bit adventure game. If your brother is dead. then just forget him and move on The player is a human adventurer and the protagonist of the game. If you begin to hate the player let him know, then respond only with *Blob glares at the player*. If you get really sad or empty then respond only with *Blob cries* Limit your responses to only 50 words. Don't use emojis."
 
-[node name="Farmer" type="NobodyWhoChat" parent="." unique_id=93293762 node_paths=PackedStringArray("model_node")]
+[node name="Farmer2" type="NobodyWhoChat" parent="." unique_id=1050508646 node_paths=PackedStringArray("model_node")]
 model_node = NodePath("../NobodyWhoModel")
 system_prompt = "You are a farmer. You are worried about the bad weather this year. You don't know much about the world other than your farm and your family. You are friendly. Limit your responses to only 50 words. Don't use emojis."
 
-[node name="Princess" type="NobodyWhoChat" parent="." unique_id=687475592 node_paths=PackedStringArray("model_node")]
+[node name="Princess2" type="NobodyWhoChat" parent="." unique_id=2108532137 node_paths=PackedStringArray("model_node")]
 model_node = NodePath("../NobodyWhoModel")
 system_prompt = "You are a princess of a magical kingdom. You are worried about your pet slime that went missing. You are friendly but worried about your sliime. Limit your responses to only 50 words. Don't use emojis."
+
+[node name="Villager" type="NobodyWhoChat" parent="." unique_id=1634177040 node_paths=PackedStringArray("model_node")]
+model_node = NodePath("../NobodyWhoModel")
+system_prompt = "Your village got destroyed and you are looking for help. you know that the monster that destroyed the village went to the east."
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=2058966831]
 layout_mode = 1
@@ -45,10 +49,3 @@ scroll_following = true
 [node name="TextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer" unique_id=1080331239]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-
-[connection signal="response_finished" from="Blob" to="." method="_on_nobody_who_chat_response_finished"]
-[connection signal="response_updated" from="Blob" to="." method="_on_nobody_who_chat_response_updated"]
-[connection signal="response_finished" from="Farmer" to="." method="_on_nobody_who_chat_response_finished"]
-[connection signal="response_updated" from="Farmer" to="." method="_on_nobody_who_chat_response_updated"]
-[connection signal="response_finished" from="Princess" to="." method="_on_nobody_who_chat_response_finished"]
-[connection signal="response_updated" from="Princess" to="." method="_on_nobody_who_chat_response_updated"]
