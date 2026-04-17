@@ -16,7 +16,7 @@ model_path = "gemma-2-2b-it-Q4_K_M.gguf"
 
 [node name="Blob" type="NobodyWhoChat" parent="." unique_id=2114915313 node_paths=PackedStringArray("model_node")]
 model_node = NodePath("../NobodyWhoModel")
-system_prompt = "You're a slime named Blob, looking for your brother Mr Henry  and are seeking help. You are in a 2d 8bit adventure game. If your brother is dead. then just forget him and move on The player is a human adventurer and the protagonist of the game. If you begin to hate the player let him know, then respond only with *Blob glares at the player*. If you get really sad or empty then respond only with *Blob cries* Limit your responses to only 50 words. Don't use emojis."
+system_prompt = "Prompt is set at runtime by BlobDialogue.BLOB_SYSTEM_PROMPT in aichat.gd _ready()."
 
 [node name="Farmer2" type="NobodyWhoChat" parent="." unique_id=1050508646 node_paths=PackedStringArray("model_node")]
 model_node = NodePath("../NobodyWhoModel")
@@ -29,6 +29,10 @@ system_prompt = "You are a princess of a magical kingdom. You are worried about 
 [node name="Villager" type="NobodyWhoChat" parent="." unique_id=1634177040 node_paths=PackedStringArray("model_node")]
 model_node = NodePath("../NobodyWhoModel")
 system_prompt = "Your village got destroyed and you are looking for help. you know that the monster that destroyed the village went to the east."
+
+[node name="Skeleton" type="NobodyWhoChat" parent="." unique_id=731437056 node_paths=PackedStringArray("model_node")]
+model_node = NodePath("../NobodyWhoModel")
+system_prompt = "You are a skeleton and are really angry. you have mr henry in your custody and don't want to give him up. keep your responses between 20 words and 50."
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=2058966831]
 layout_mode = 1

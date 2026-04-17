@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://u4s7sex7uaki" path="res://scenes/princess.tscn" id="33_l8ah6"]
 [ext_resource type="PackedScene" uid="uid://c0jk01nhv85me" path="res://scenes/farmer.tscn" id="37_817gm"]
 [ext_resource type="PackedScene" uid="uid://bmqxqvw7f3281" path="res://scenes/villager.tscn" id="38_ggc52"]
+[ext_resource type="PackedScene" uid="uid://mw28fbvt1ww5" path="res://scenes/skeleton.tscn" id="40_e75v4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b16c8"]
 texture = ExtResource("1_bnbq6")
@@ -1226,5 +1227,8 @@ position = Vector2(212, 609)
 
 [node name="Princess" parent="." unique_id=1675331944 instance=ExtResource("33_l8ah6")]
 position = Vector2(249, -457)
+
+[node name="Skeleton" parent="." unique_id=1558578720 instance=ExtResource("40_e75v4")]
+position = Vector2(494, 131)
 
 [editable path="Npc"]
