@@ -14,9 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://bd71pbqgxbcn7" path="res://assets/tilesets/water_lillies.png" id="9_6oujy"]
 [ext_resource type="Texture2D" uid="uid://dtndatlrblisy" path="res://assets/pictures/public_landing_page_qr.png" id="9_7r4gi"]
 [ext_resource type="Texture2D" uid="uid://b8kq5di5aipyf" path="res://assets/tilesets/wooden.png" id="10_hi6a0"]
-[ext_resource type="PackedScene" uid="uid://bwv4iywcge0wu" path="res://scenes/aichat.tscn" id="11_e3hyu"]
+[ext_resource type="PackedScene" uid="uid://0mew0s560i71" path="res://scenes/aichat.tscn" id="11_e3hyu"]
 [ext_resource type="Texture2D" uid="uid://cpeegrcstoolg" path="res://assets/tilesets/wooden_door.png" id="11_eo1xk"]
 [ext_resource type="Texture2D" uid="uid://r06ubuwrv1q2" path="res://assets/tilesets/wooden_door_b.png" id="12_18clu"]
+[ext_resource type="PackedScene" uid="uid://def6joe83nhef" path="res://scenes/NPC.tscn" id="12_jhx03"]
+[ext_resource type="PackedScene" uid="uid://c8p0gs781n0fy" path="res://scenes/textbox.tscn" id="12_q5onr"]
 [ext_resource type="Texture2D" uid="uid://cro58md2nyodn" path="res://assets/objects/chest_01.png" id="14_4wdv8"]
 [ext_resource type="Texture2D" uid="uid://dmicmujtuyw0j" path="res://assets/objects/chest_02.png" id="15_d46x8"]
 [ext_resource type="Texture2D" uid="uid://47buuogefq3o" path="res://assets/objects/rock_in_water_01-sheet.png" id="16_3l05q"]
@@ -34,6 +36,10 @@
 [ext_resource type="Texture2D" uid="uid://cxu2vpmcgt3je" path="res://assets/tilesets/walls.png" id="27_mvg0v"]
 [ext_resource type="Texture2D" uid="uid://b3p7atng4ty3d" path="res://assets/tilesets/water1.png" id="28_h3odw"]
 [ext_resource type="Texture2D" uid="uid://cg5tadebh24r4" path="res://assets/tilesets/water2.png" id="29_5hl1e"]
+[ext_resource type="PackedScene" uid="uid://u4s7sex7uaki" path="res://scenes/princess.tscn" id="33_l8ah6"]
+[ext_resource type="PackedScene" uid="uid://c0jk01nhv85me" path="res://scenes/farmer.tscn" id="37_817gm"]
+[ext_resource type="PackedScene" uid="uid://bmqxqvw7f3281" path="res://scenes/villager.tscn" id="38_ggc52"]
+[ext_resource type="PackedScene" uid="uid://mw28fbvt1ww5" path="res://scenes/skeleton.tscn" id="40_e75v4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b16c8"]
 texture = ExtResource("1_bnbq6")
@@ -1152,6 +1158,11 @@ tile_set = SubResource("TileSet_fsvww")
 [node name="Player" parent="." unique_id=434599111 instance=ExtResource("4_g0t5b")]
 position = Vector2(228, 135)
 
+[node name="AIChat" parent="Player" unique_id=1871930598 instance=ExtResource("11_e3hyu")]
+z_index = 10
+offset_top = 1.0
+offset_bottom = 1.0
+
 [node name="Slime" parent="." unique_id=341324291 instance=ExtResource("5_w7kh3")]
 position = Vector2(277.7658, 144.4385)
 
@@ -1201,9 +1212,23 @@ layout_mode = 2
 texture = ExtResource("9_7r4gi")
 expand_mode = 3
 
-[node name="AIChat" parent="." unique_id=1871930598 instance=ExtResource("11_e3hyu")]
-z_index = 10
-offset_left = 200.24902
-offset_top = 120.93471
-offset_right = 200.24902
-offset_bottom = 120.93471
+[node name="Textbox" parent="." unique_id=2024913025 instance=ExtResource("12_q5onr")]
+visible = false
+
+[node name="Npc" parent="." unique_id=1315252259 instance=ExtResource("12_jhx03")]
+position = Vector2(210, 237)
+move_speed = 0.0
+
+[node name="Farmer" parent="." unique_id=310347183 instance=ExtResource("37_817gm")]
+position = Vector2(-828, 71)
+
+[node name="Villager" parent="." unique_id=1147717975 instance=ExtResource("38_ggc52")]
+position = Vector2(212, 609)
+
+[node name="Princess" parent="." unique_id=1675331944 instance=ExtResource("33_l8ah6")]
+position = Vector2(249, -457)
+
+[node name="Skeleton" parent="." unique_id=1558578720 instance=ExtResource("40_e75v4")]
+position = Vector2(494, 131)
+
+[editable path="Npc"]
