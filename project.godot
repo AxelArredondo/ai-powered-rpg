@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="AIPoweredRPG"
-run/main_scene="uid://bfubh8prq833x"
+run/main_scene="uid://1wa5m0wmydw3"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

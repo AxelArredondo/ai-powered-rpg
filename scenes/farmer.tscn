@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://c0jk01nhv85me"]
+[gd_scene format=3 uid="uid://yl7k63hs1pna"]
 
 [ext_resource type="Texture2D" uid="uid://cg5805s43fx6c" path="res://assets/sprites/characters/playerbluee.png" id="1_vltvv"]
-[ext_resource type="Script" uid="uid://dgwyp6xdpov48" path="res://scripts/npc_chat.gd" id="2_2qlof"]
+[ext_resource type="Script" path="res://scripts/npc_chat.gd" id="2_2qlof"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2qlof"]
 atlas = ExtResource("1_vltvv")
@@ -307,7 +307,7 @@ shape = SubResource("RectangleShape2D_vltvv")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=595276738]
 script = ExtResource("2_2qlof")
-chat_node_name = "Farmer2"
+chat_node_name = "Farmer"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1487963962]
 position = Vector2(1, 6)

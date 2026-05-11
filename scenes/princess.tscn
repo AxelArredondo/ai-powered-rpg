@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://u4s7sex7uaki"]
+[gd_scene format=3 uid="uid://duop1yud2c5rh"]
 
 [ext_resource type="Texture2D" uid="uid://dx56dv6juqns7" path="res://assets/sprites/characters/playerYellow.png" id="1_o4716"]
-[ext_resource type="Script" uid="uid://dgwyp6xdpov48" path="res://scripts/npc_chat.gd" id="2_6t68o"]
+[ext_resource type="Script" path="res://scripts/npc_chat.gd" id="2_6t68o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6t68o"]
 atlas = ExtResource("1_o4716")
@@ -307,7 +307,7 @@ shape = SubResource("RectangleShape2D_o4716")
 
 [node name="Area2D" type="Area2D" parent="CollisionShape2D" unique_id=646025211]
 script = ExtResource("2_6t68o")
-chat_node_name = "Princess2"
+chat_node_name = "Princess"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Area2D" unique_id=2048941327]
 shape = SubResource("CircleShape2D_h8nea")

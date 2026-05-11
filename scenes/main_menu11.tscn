@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://1wa5m0wmydw3"]
+[gd_scene format=3 uid="uid://bvp4dxqpwqmbp"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_ekxnf"]
-[ext_resource type="Theme" uid="uid://cxbf03eg421lj" path="res://fonts/theme.tres" id="1_l6cm7"]
-[ext_resource type="AudioStream" uid="uid://kxl2dowdlkum" path="res://music/Menu Theme.ogg" id="3_bqqt6"]
-[ext_resource type="Texture2D" uid="uid://ddqnkaeukmcnf" path="res://assets/backgrounds/airpg_menu.png" id="4_wu84c"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_w7xd6"]
+[ext_resource type="Theme" uid="uid://cxbf03eg421lj" path="res://fonts/theme.tres" id="2_tno5x"]
+[ext_resource type="AudioStream" uid="uid://kxl2dowdlkum" path="res://music/Menu Theme.ogg" id="3_oto62"]
+[ext_resource type="Texture2D" uid="uid://ddqnkaeukmcnf" path="res://assets/backgrounds/airpg_menu.png" id="4_w1x41"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wu84c"]
 blend_mode = 1
@@ -15,7 +15,7 @@ blend_mode = 1
 blend_mode = 1
 
 [node name="Main Menu" type="Node" unique_id=2057887975]
-script = ExtResource("1_ekxnf")
+script = ExtResource("1_w7xd6")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=531101900]
 anchor_mode = 0
@@ -54,7 +54,7 @@ theme_override_constants/separation = 11
 [node name="Game Title" type="RichTextLabel" parent="Main Screen/MarginContainer/VBoxContainer" unique_id=1464040392]
 visible = false
 layout_mode = 2
-theme = ExtResource("1_l6cm7")
+theme = ExtResource("2_tno5x")
 theme_override_font_sizes/normal_font_size = 32
 text = "Crystal Cave
 "
@@ -109,7 +109,7 @@ layout_mode = 2
 [node name="Settings Title" type="RichTextLabel" parent="Settings Screen/MarginContainer/VBoxContainer" unique_id=2028213606]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("1_l6cm7")
+theme = ExtResource("2_tno5x")
 theme_override_font_sizes/normal_font_size = 32
 text = "Settings"
 fit_content = true
@@ -157,7 +157,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme = ExtResource("1_l6cm7")
+theme = ExtResource("2_tno5x")
 theme_override_font_sizes/normal_font_size = 32
 text = "Credits"
 fit_content = true
@@ -170,7 +170,7 @@ size_flags_vertical = 10
 text = "Back"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1265525325]
-stream = ExtResource("3_bqqt6")
+stream = ExtResource("3_oto62")
 volume_db = -10.0
 autoplay = true
 
@@ -182,7 +182,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("4_wu84c")
+texture = ExtResource("4_w1x41")
 expand_mode = 2
 
 [connection signal="pressed" from="Main Screen/MarginContainer/VBoxContainer/Play Button" to="." method="_on_play_button_pressed"]
